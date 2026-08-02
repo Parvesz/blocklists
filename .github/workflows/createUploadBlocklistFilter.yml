@@ -54,21 +54,21 @@ jobs:
     timeout-minutes: 100
     steps:
     - name: 📃 Checkout repo
-      uses: actions/checkout@v3.3.0
+      uses: actions/checkout@v7
     - name: 🐉 Setup python
-      uses: actions/setup-python@v4.5.0
+      uses: actions/setup-python@v7
       with:
         python-version: '3.x'
     - name: ⭕ Setup node
-      uses: actions/setup-node@v3.6.0
+      uses: actions/setup-node@v7
       with:
-        node-version: '19'
+        node-version: 'lts/*'
     - name: ⏳ Make swap
       run: |
           free -hm
           df -h
           # make swap: community.fly.io/t/6782/10
-          sudo fallocate -l 16G /tmp/swapfile
+          sudo fallocate -l 24G /tmp/swapfile
           # unix.stackexchange.com/a/297155
           sudo chown root:root /tmp/swapfile
           sudo mkswap /tmp/swapfile
